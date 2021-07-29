@@ -62,7 +62,7 @@
       "chmod +x /tmp/provision.sh",
       "chmod +x /tmp/uefi.sh",
       "mv /tmp/uefi.sh /usr/local/bin/uefi.sh",
-      "/tmp/provision.sh {{ user `provision_script_options` }}",
+      "bash -x /tmp/provision.sh {{ user `provision_script_options` }}",
       "sync;sync;reboot"
       ],
     "inline_shebang": "/bin/sh -x",
@@ -97,6 +97,7 @@
      {
        "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} sudo -E sh '{{ .Path }}'",
        "inline": [
+       "ls -la /tmp",
        "echo Last Phase",
        "chmod +x /tmp/prepare_neofetch.sh",
        "chmod +x /usr/local/bin/uefi.sh",
@@ -104,8 +105,8 @@
        "mv -fv /tmp/common-password /etc/pam.d/common-password",
        "chmod 644 /etc/pam.d/common-password",
        "chown root:root /etc/pam.d/common-password",
-       "/tmp/prepare_neofetch.sh",
-       "/tmp/zeroing.sh",
+       "bash -x /tmp/prepare_neofetch.sh",
+       "bash -x /tmp/zeroing.sh",
        "/bin/rm -rfv /tmp/*",
        "/bin/rm -f /etc/ssh/*key*",
        "/usr/bin/ssh-keygen -A",
