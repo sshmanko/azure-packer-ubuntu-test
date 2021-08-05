@@ -5,7 +5,7 @@
     "vm_name": "packer-vm",
     "disk_size": "16000",
     "disk_additional_size":"5000",
-    "switch_name": "vSwitch",
+    "switch_name": "NAT_vSwitch",
     "output_directory": "output",
     "vlan_id": "",
     "ssh_password": "password",
